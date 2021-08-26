@@ -8,10 +8,6 @@ inputs:
     description: Git branch where the paper is located
     required: false
     default: ""
-outputs:
-  paper_path:
-    description: "Path to the paper file to compile"
-    value: ${{ steps.paper-finder.outputs.paper_file_path }}
 runs:
   using: "composite"
   steps:
@@ -28,12 +24,15 @@ runs:
         PAPER_BRANCH: ${{ github.event.inputs.branch }}
       run: |
         echo "::set-output name=paper_file_path::$(ruby ${{ github.action_path }}/find_paper.rb)"
-        export REPO_PAPER_PATH=$(ruby ${{ github.action_path }}/find_paper.rb)
     - name: Check result
       shell: bash
       run: |
-        echo "Env variable: $REPO_PAPER_PATH"
-        echo "Output value: ${{ steps.paper-finder.outputs.paper_file_path }}"
+        echo "Paper path is: ${{ steps.paper-finder.outputs.paper_file_path }}"
+    - name: Build draft PDF
+      uses: openjournals/openjournals-draft-action@master
+      with:
+        journal: joss
+        paper-path: ${{ steps.paper-finder.outputs.paper_file_path }}
 
 branding:
   icon: file-text
