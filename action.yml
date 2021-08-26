@@ -22,6 +22,7 @@ runs:
         bundler-cache: true
     - name: Find paper file
       id: paper-finder
+      shell: bash
       env:
         REPO_URL: ${{ github.event.inputs.repository_url }}
         PAPER_BRANCH: ${{ github.event.inputs.branch }}
@@ -29,6 +30,7 @@ runs:
         echo "::set-output name=paper_file_path::$(ruby ${{ github.action_path }}/find_paper.rb)"
         export REPO_PAPER_PATH=$(ruby ${{ github.action_path }}/find_paper.rb)
     - name: Check result
+      shell: bash
       run: |
         echo $REPO_PAPER_PATH
         echo ${{ outputs.paper_path.value }}
