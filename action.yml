@@ -14,7 +14,6 @@ outputs:
     value: ${{ steps.paper-finder.outputs.paper_file_path }}
 runs:
   using: "composite"
-runs:
   steps:
     - name: Install Ruby
       uses: ruby/setup-ruby@v1
