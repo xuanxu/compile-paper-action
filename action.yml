@@ -7,14 +7,33 @@ inputs:
   branch:
     description: Git branch where the paper is located
     required: false
-    default: main
+    default: ""
+outputs:
   paper_path:
-    description: >-
-        Path to the main paper Markdown file, relative to the
-        project's root directory.
-    required: false
-    default: 'paper.md'
+    description: "Path to the paper file to compile"
+    value: ${{ steps.paper-finder.outputs.paper_file_path }}
 runs:
+  using: "composite"
+runs:
+  steps:
+    - name: Install Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0.2
+        bundler-cache: true
+    - name: Find paper file
+      id: paper-finder
+      env:
+        REPO_URL: ${{ github.event.inputs.repository_url }}
+        PAPER_BRANCH: ${{ github.event.inputs.branch }}
+      run: |
+        echo "::set-output name=paper_file_path::$(ruby ${{ github.action_path }}/find_paper.rb)"
+        export REPO_PAPER_PATH=$(ruby ${{ github.action_path }}/find_paper.rb)
+    - name: Check result
+      run: |
+        echo $REPO_PAPER_PATH
+        echo ${{ outputs.paper_path.value }}
+
 branding:
   icon: file-text
   color: blue
