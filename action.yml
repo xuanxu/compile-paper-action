@@ -32,8 +32,8 @@ runs:
     - name: Check result
       shell: bash
       run: |
-        echo $REPO_PAPER_PATH
-        echo ${{ outputs.paper_path.value }}
+        echo "Env variable: $REPO_PAPER_PATH"
+        echo "Output value: ${{ steps.paper-finder.outputs.paper_file_path }}"
 
 branding:
   icon: file-text
