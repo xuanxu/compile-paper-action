@@ -43,8 +43,8 @@ if repo_url.nil? || repo_url.empty?
   raise "   !! ERROR: Missing target repository's URL"
 end
 
-clone_repo repo_url, repo_local_path
-change_branch repo_branch, repo_local_path
+raise "   !! ERROR: Invalid repository URL: #{repo_url}" unless clone_repo repo_url, repo_local_path
+raise "   !! ERROR: Invalid branch: #{repo_branch}" unless change_branch repo_branch, repo_local_path
 
 paper_path = find repo_local_path
 
