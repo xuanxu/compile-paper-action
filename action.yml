@@ -25,7 +25,6 @@ runs:
       run: |
         echo "::set-output name=paper_file_path::$(ruby ${{ github.action_path }}/find_paper.rb)"
     - name: Check result
-      if: ${{ success() }}
       shell: bash
       run: |
         echo "Paper path is: ${{ steps.paper-finder.outputs.paper_file_path }}"
