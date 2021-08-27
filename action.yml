@@ -8,6 +8,10 @@ inputs:
     description: Git branch where the paper is located
     required: false
     default: ""
+  journal:
+    description: The journal template to use for the paper. May be either 'joss' or 'jose'. Defaults to joss
+    required: false
+    default: "joss"
 runs:
   using: "composite"
   steps:
@@ -31,7 +35,7 @@ runs:
     - name: Build draft PDF
       uses: openjournals/openjournals-draft-action@master
       with:
-        journal: joss
+        journal: ${{ github.event.inputs.journal }}
         paper-path: ${{ steps.paper-finder.outputs.paper_file_path }}
 
 branding:
