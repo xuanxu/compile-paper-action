@@ -40,8 +40,7 @@ repo_branch = ENV["REPO_BRANCH"]
 repo_local_path = "./target_repository"
 
 if repo_url.nil? || repo_url.empty?
-  puts "   !! ERROR: Missing target repository's URL"
-  exit 1
+  raise "   !! ERROR: Missing target repository's URL"
 end
 
 clone_repo repo_url, repo_local_path
@@ -50,8 +49,7 @@ change_branch repo_branch, repo_local_path
 paper_path = find repo_local_path
 
 if paper_path.nil?
-  puts "   !! ERROR: Paper file not found"
-  exit 1
+  raise "   !! ERROR: Paper file not found"
 else
   puts paper_path
 end
