@@ -35,7 +35,7 @@ def find(search_path)
 end
 
 repo_url = ENV["REPO_URL"]
-repo_branch = ENV["REPO_BRANCH"]
+repo_branch = ENV["PAPER_BRANCH"]
 
 repo_local_path = "./target_repository"
 
