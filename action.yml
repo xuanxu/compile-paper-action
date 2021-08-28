@@ -11,7 +11,7 @@ inputs:
   journal:
     description: The journal template to use for the paper. Default is 'joss'.
     required: false
-    default: "joss"
+    default: joss
 runs:
   using: "composite"
   steps:
@@ -24,8 +24,8 @@ runs:
       id: paper-finder
       shell: bash
       env:
-        REPO_URL: ${{ github.event.inputs.repository_url }}
-        PAPER_BRANCH: ${{ github.event.inputs.branch }}
+        REPO_URL: ${{ inputs.repository_url }}
+        PAPER_BRANCH: ${{ inputs.branch }}
       run: |
         echo "::set-output name=paper_file_path::$(ruby ${{ github.action_path }}/find_paper.rb)"
     - name: Check result
@@ -35,7 +35,7 @@ runs:
     - name: Build draft PDF
       uses: openjournals/openjournals-draft-action@master
       with:
-        journal: ${{ github.event.inputs.journal }}
+        journal: ${{ inputs.journal }}
         paper-path: ${{ steps.paper-finder.outputs.paper_file_path }}
 
 branding:
