@@ -34,6 +34,7 @@ runs:
         journal: ${{ inputs.journal }}
         paper-path: ${{ steps.paper-finder.outputs.paper_file_path }}
     - name: Check results
+      shell: bash
       run: |
         ruby ${{ github.action_path }}/check_results.rb ${{ steps.paper-finder.outputs.paper_file_path }}
 
