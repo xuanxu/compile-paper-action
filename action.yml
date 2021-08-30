@@ -36,7 +36,7 @@ runs:
     - name: Check results
       shell: bash
       run: |
-        ruby ${{ github.action_path }}/check_results.rb ${{ steps.paper-finder.outputs.paper_file_path }}
+        ruby ${{ github.action_path }}/check_result.rb ${{ steps.paper-finder.outputs.paper_file_path }}
 
 branding:
   icon: file-text
