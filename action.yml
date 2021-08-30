@@ -1,4 +1,4 @@
-name: Compiler Job Test
+name: Compiler
 description: Create a draft PDF for an Open Journals paper
 inputs:
   repository_url:
@@ -29,11 +29,13 @@ runs:
       run: |
         echo "::set-output name=paper_file_path::$(ruby ${{ github.action_path }}/find_paper.rb)"
     - name: Build draft PDF
+      id: build-pdf
       uses: openjournals/openjournals-draft-action@master
       with:
         journal: ${{ inputs.journal }}
         paper-path: ${{ steps.paper-finder.outputs.paper_file_path }}
     - name: Check results
+      id: Result
       shell: bash
       run: |
         ruby ${{ github.action_path }}/check_result.rb ${{ steps.paper-finder.outputs.paper_file_path }}
