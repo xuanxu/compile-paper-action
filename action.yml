@@ -28,15 +28,14 @@ runs:
         PAPER_BRANCH: ${{ inputs.branch }}
       run: |
         echo "::set-output name=paper_file_path::$(ruby ${{ github.action_path }}/find_paper.rb)"
-    - name: Check result
-      shell: bash
-      run: |
-        echo "Paper path is: ${{ steps.paper-finder.outputs.paper_file_path }}"
     - name: Build draft PDF
       uses: openjournals/openjournals-draft-action@master
       with:
         journal: ${{ inputs.journal }}
         paper-path: ${{ steps.paper-finder.outputs.paper_file_path }}
+    - name: Check results
+      run: |
+        ruby ${{ github.action_path }}/check_results.rb ${{ steps.paper-finder.outputs.paper_file_path }}
 
 branding:
   icon: file-text
