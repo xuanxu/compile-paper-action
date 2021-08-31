@@ -23,7 +23,6 @@ runs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.0.2
-        bundler: none
     - name: Find paper file
       id: paper-finder
       shell: bash
