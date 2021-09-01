@@ -41,7 +41,7 @@ runs:
       id: compilation-result
       shell: bash
       run: |
-        echo "::set-output name=paper_pdf_path::$(ruby ${{ github.action_path }}/check_result.rb ${{ steps.paper-finder.outputs.paper_file_path }}"
+        echo "::set-output name=paper_pdf_path::$(ruby ${{ github.action_path }}/check_result.rb ${{ steps.paper-finder.outputs.paper_file_path }})"
 
 branding:
   icon: file-text
