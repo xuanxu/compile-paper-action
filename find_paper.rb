@@ -53,4 +53,3 @@ if paper_path.nil?
 else
   puts paper_path
 end
-
