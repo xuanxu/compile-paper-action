@@ -30,7 +30,7 @@ runs:
         REPO_URL: ${{ inputs.repository_url }}
         PAPER_BRANCH: ${{ inputs.branch }}
       run: |
-        echo "::set-output name=paper_file_path::$(ruby ${{ github.action_path }}/find_paper.rb)"
+        ruby ${{ github.action_path }}/find_paper.rb
     - name: Build draft PDF
       id: build-pdf
       uses: openjournals/openjournals-draft-action@master
@@ -41,6 +41,7 @@ runs:
       id: compilation-result
       shell: bash
       run: |
+        ruby ${{ github.action_path }}/check_result.rb ${{ steps.paper-finder.outputs.paper_file_path }}
         echo "::set-output name=paper_pdf_path::$(ruby ${{ github.action_path }}/check_result.rb ${{ steps.paper-finder.outputs.paper_file_path }})"
 
 branding:

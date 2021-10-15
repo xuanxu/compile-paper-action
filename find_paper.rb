@@ -51,5 +51,5 @@ paper_path = find repo_local_path
 if paper_path.nil?
   raise "   !! ERROR: Paper file not found"
 else
-  puts paper_path
+  system("echo '::set-output name=paper_file_path::#{paper_path}'")
 end
