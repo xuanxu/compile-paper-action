@@ -16,6 +16,9 @@ outputs:
   pdf_path:
     description: "Path to the generated PDF file"
     value: ${{ steps.compilation-result.outputs.paper_pdf_path }}
+  paper_file_path:
+    description: "Path to the paper's .md/.tex source file"
+    value: ${{ steps.paper-finder.outputs.paper_file_path }}
 runs:
   using: "composite"
   steps:

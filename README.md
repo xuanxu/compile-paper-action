@@ -19,6 +19,7 @@ The action accepts the following inputs:
 ### Outputs
 
 - **pdf_path**: The path to the generated PDF file
+- **paper_file_path**: Path to the paper's .md/.tex source file
 
 ### Example
 
