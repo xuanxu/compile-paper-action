@@ -2,7 +2,7 @@
 
 This action looks for a `paper.md` file in the specified repository and uses it to compile a Open Journals pdf paper.
 
-Under the hood it uses the [openjournals-draft-action](https://github.com/openjournals/openjournals-draft-action) to generate the PDF.
+Under the hood it uses the [publishing-artifacts-action](https://github.com/xuanxu/publishing-artifacts-action) to generate the PDF.
 
 ## Usage
 
