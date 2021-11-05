@@ -36,7 +36,7 @@ runs:
         ruby ${{ github.action_path }}/find_paper.rb
     - name: Build draft PDF
       id: build-pdf
-      uses: openjournals/openjournals-draft-action@master
+      uses: xuanxu/publishing-artifacts-action@main
       with:
         journal: ${{ inputs.journal }}
         paper-path: ${{ steps.paper-finder.outputs.paper_file_path }}
